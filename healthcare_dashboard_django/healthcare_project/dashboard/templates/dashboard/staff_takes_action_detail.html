@@ -1,0 +1,13 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Action Details{% endblock %}
+
+{% block content %}
+<h2>Action Details</h2>
+<p><strong>Staff Member:</strong> <a href="{% url 'staff_detail' action.staff.staff_id %}">{{ action.staff.first_name }} {{ action.staff.last_name }}</a></p>
+<p><strong>Alert ID:</strong> <a href="{% url 'alert_detail' action.alert.alert_id %}">{{ action.alert.alert_id }}</a></p>
+<p><strong>Action Timestamp:</strong> {{ action.action_timestamp }}</p>
+<p><strong>Action Taken:</strong> {{ action.action_taken }}</p>
+<p><strong>Response Time:</strong> {{ action.response_time }} minutes</p>
+<p><strong>Follow-Up Required:</strong> {{ action.follow_up_required|yesno:"Yes,No" }}</p>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Staff Members{% endblock %}
+
+{% block content %}
+    <h2>Staff Members</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Staff ID</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for staff_member in staff_members %}
+            <tr>
+                <td>{{ staff_member.staff_id }}</td>
+                <td>{{ staff_member.first_name }} {{ staff_member.last_name }}</td>
+                <td>{{ staff_member.role }}</td>
+                <td><a href="{% url 'staff_detail' staff_member.staff_id %}" class="btn btn-primary btn-sm">View Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

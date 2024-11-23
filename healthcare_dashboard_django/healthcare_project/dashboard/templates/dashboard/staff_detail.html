@@ -1,0 +1,47 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Staff Details{% endblock %}
+
+{% block content %}
+    <h2>Staff Details: {{ staff_member.first_name }} {{ staff_member.last_name }}</h2>
+    <p><strong>Staff ID:</strong> {{ staff_member.staff_id }}</p>
+    <p><strong>Role:</strong> {{ staff_member.role }}</p>
+    <p><strong>Department:</strong> {{ staff_member.department }}</p>
+    <p><strong>Email:</strong> {{ staff_member.email }}</p>
+    <p><strong>Phone:</strong> {{ staff_member.phone }}</p>
+
+    <h3>Assigned Patients</h3>
+    {% if patients %}
+    <ul>
+        {% for patient in patients %}
+        <li><a href="{% url 'patient_detail' patient.patient_id %}">{{ patient.first_name }} {{ patient.last_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No patients assigned to this staff member.</p>
+    {% endif %}
+
+    <h3>Actions Taken</h3>
+    {% if actions_taken %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Alert ID</th>
+                <th>Action Timestamp</th>
+                <th>Action Taken</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for action in actions_taken %}
+            <tr>
+                <td><a href="{% url 'alert_detail' action.alert.alert_id %}">{{ action.alert.alert_id }}</a></td>
+                <td>{{ action.action_timestamp }}</td>
+                <td>{{ action.action_taken }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No actions recorded for this staff member.</p>
+    {% endif %}
+{% endblock %}

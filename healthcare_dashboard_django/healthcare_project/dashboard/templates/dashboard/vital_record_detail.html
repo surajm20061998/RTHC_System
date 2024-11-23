@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Vital Record Details{% endblock %}
+
+{% block content %}
+    <h2>Vital Record ID: {{ vital_record.record_id }}</h2>
+    <p><strong>Timestamp:</strong> {{ vital_record.timestamp }}</p>
+    <p><strong>Heart Rate:</strong> {{ vital_record.heart_rate }}</p>
+    <p><strong>Blood Pressure:</strong> {{ vital_record.blood_pressure_systolic }}/{{ vital_record.blood_pressure_diastolic }}</p>
+    <p><strong>Temperature:</strong> {{ vital_record.temperature }}</p>
+    <p><strong>Respiratory Rate:</strong> {{ vital_record.respiratory_rate }}</p>
+    <p><strong>Oxygen Saturation:</strong> {{ vital_record.oxygen_saturation }}</p>
+
+    <h3>Associated Patients</h3>
+    {% if patients %}
+    <ul>
+        {% for patient in patients %}
+        <li><a href="{% url 'patient_detail' patient.patient_id %}">{{ patient.first_name }} {{ patient.last_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No patients associated with this vital record.</p>
+    {% endif %}
+
+    <h3>Triggered Alerts</h3>
+    {% if alerts %}
+    <ul>
+        {% for alert in alerts %}
+        <li><a href="{% url 'alert_detail' alert.alert_id %}">Alert ID: {{ alert.alert_id }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No alerts triggered by this vital record.</p>
+    {% endif %}
+{% endblock %}

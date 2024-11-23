@@ -1,0 +1,58 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Alert Details{% endblock %}
+
+{% block content %}
+    <h2>Alert ID: {{ alert.alert_id }}</h2>
+    <p><strong>Timestamp:</strong> {{ alert.timestamp }}</p>
+    <p><strong>Type:</strong> {{ alert.alert_type }}</p>
+    <p><strong>Severity:</strong> {{ alert.severity }}</p>
+    <p><strong>Description:</strong> {{ alert.description }}</p>
+    <p><strong>Status:</strong> {{ alert.status }}</p>
+
+    <h3>Triggered By Vital Records</h3>
+    {% if vital_records %}
+    <ul>
+        {% for record in vital_records %}
+        <li><a href="{% url 'vital_record_detail' record.record_id %}">Vital Record ID: {{ record.record_id }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No vital records associated with this alert.</p>
+    {% endif %}
+
+    <h3>Required Actions</h3>
+    {% if actions_required %}
+    <ul>
+        {% for action in actions_required %}
+        <li>{{ action.required_action_type }} (Priority: {{ action.priority_level }})</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No required actions specified for this alert.</p>
+    {% endif %}
+
+    <h3>Actions Taken</h3>
+    {% if actions_taken %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Staff Member</th>
+                <th>Action Timestamp</th>
+                <th>Action Taken</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for action in actions_taken %}
+            <tr>
+                <td><a href="{% url 'staff_detail' action.staff.staff_id %}">{{ action.staff.first_name }} {{ action.staff.last_name }}</a></td>
+                <td>{{ action.action_timestamp }}</td>
+                <td>{{ action.action_taken }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No actions have been taken for this alert.</p>
+    {% endif %}
+{% endblock %}

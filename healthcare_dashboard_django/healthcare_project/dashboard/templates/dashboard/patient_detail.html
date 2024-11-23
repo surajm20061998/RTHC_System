@@ -1,0 +1,42 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Patient Details{% endblock %}
+
+{% block content %}
+    <h2>Patient Details: {{ patient.first_name }} {{ patient.last_name }}</h2>
+    <p><strong>Patient ID:</strong> {{ patient.patient_id }}</p>
+    <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Blood Type:</strong> {{ patient.blood_type }}</p>
+    <p><strong>Status:</strong> {{ patient.status }}</p>
+
+    <h3>Vital Records</h3>
+    {% if vitals_records %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Heart Rate</th>
+                <th>Blood Pressure</th>
+                <th>Temperature</th>
+                <th>Respiratory Rate</th>
+                <th>Oxygen Saturation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in vitals_records %}
+            <tr>
+                <td>{{ record.timestamp }}</td>
+                <td>{{ record.heart_rate }}</td>
+                <td>{{ record.blood_pressure_systolic }}/{{ record.blood_pressure_diastolic }}</td>
+                <td>{{ record.temperature }}</td>
+                <td>{{ record.respiratory_rate }}</td>
+                <td>{{ record.oxygen_saturation }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No vital records available for this patient.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Device Types{% endblock %}
+
+{% block content %}
+    <h2>Device Types</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Device Type ID</th>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device_type in device_types %}
+            <tr>
+                <td>{{ device_type.deviceType_id }}</td>
+                <td>{{ device_type.name }}</td>
+                <td>{{ device_type.manufacturer }}</td>
+                <td><a href="{% url 'device_type_detail' device_type.deviceType_id %}" class="btn btn-primary btn-sm">View Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
