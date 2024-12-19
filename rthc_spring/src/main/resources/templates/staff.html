@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Staff</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Healthcare System</div>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/patients}">Patients</a>
+            <a th:href="@{/forecast}">Forecast</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>All Staff</h1>
+        <div class="card">
+            <a th:href="@{/staff/new}" style="margin-bottom: 1rem; display:inline-block;">Add New Staff</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Staff ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${staffList}">
+                        <td th:text="${s.staffId}">1</td>
+                        <td th:text="${s.firstName + ' ' + s.lastName}">Jane Smith</td>
+                        <td th:text="${s.role}">Nurse</td>
+                        <td th:text="${s.department}">Emergency</td>
+                        <td>
+                            <a th:href="@{|/staff/edit/${s.staffId}|}">Edit</a> |
+                            <a th:href="@{|/staff/delete/${s.staffId}|}">Delete</a> |
+                            <a th:href="@{|/staff/${s.staffId}|}">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

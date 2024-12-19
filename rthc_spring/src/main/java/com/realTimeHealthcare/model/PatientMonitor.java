@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "PatientMonitor")
+@Table(name = "PatientMonitor", schema = "dbo")
+//@Table(name = "PatientMonitor")
 public class PatientMonitor {
 
     @Id
@@ -33,7 +34,7 @@ public class PatientMonitor {
 
     // Relationships
     @OneToMany(mappedBy = "monitor")
-    private Set<DeviceTypeDefinesMonitor> deviceTypeDefinitions;
+    private Set<DeviceTypeDefinesMonitor> deviceTypeDefinesMonitors;
 
     @OneToMany(mappedBy = "monitor")
     private Set<MonitorRecordsVitals> vitalsRecords;
@@ -41,7 +42,11 @@ public class PatientMonitor {
     @OneToMany(mappedBy = "monitor")
     private Set<PatientMonitorAssignment> patientAssignments;
 
+    // Constructors
+    public PatientMonitor() {}
+
     // Getters and Setters
+
     public Integer getMonitorId() {
         return monitorId;
     }
@@ -50,5 +55,75 @@ public class PatientMonitor {
         this.monitorId = monitorId;
     }
 
-    // ... [Include other getters and setters]
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getModelNumber() {
+        return modelNumber;
+    }
+
+    public void setModelNumber(String modelNumber) {
+        this.modelNumber = modelNumber;
+    }
+
+    public Date getLastMaintenanceDate() {
+        return lastMaintenanceDate;
+    }
+
+    public void setLastMaintenanceDate(Date lastMaintenanceDate) {
+        this.lastMaintenanceDate = lastMaintenanceDate;
+    }
+
+    public Date getCalibrationDate() {
+        return calibrationDate;
+    }
+
+    public void setCalibrationDate(Date calibrationDate) {
+        this.calibrationDate = calibrationDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Set<DeviceTypeDefinesMonitor> getDeviceTypeDefinesMonitors() {
+        return deviceTypeDefinesMonitors;
+    }
+
+    public void setDeviceTypeDefinesMonitors(Set<DeviceTypeDefinesMonitor> deviceTypeDefinesMonitors) {
+        this.deviceTypeDefinesMonitors = deviceTypeDefinesMonitors;
+    }
+
+    public Set<MonitorRecordsVitals> getVitalsRecords() {
+        return vitalsRecords;
+    }
+
+    public void setVitalsRecords(Set<MonitorRecordsVitals> vitalsRecords) {
+        this.vitalsRecords = vitalsRecords;
+    }
+
+    public Set<PatientMonitorAssignment> getPatientAssignments() {
+        return patientAssignments;
+    }
+
+    public void setPatientAssignments(Set<PatientMonitorAssignment> patientAssignments) {
+        this.patientAssignments = patientAssignments;
+    }
 }

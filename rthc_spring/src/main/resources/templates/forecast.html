@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Forecast</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Increase the size of the chart container inline or add to your CSS file */
+        .chart-container {
+            width: 100%;
+            height: 500px; /* Increase this as needed */
+            position: relative;
+        }
+
+        /* Optional: Add some spacing to make the chart more prominent */
+        .card h2 {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Healthcare System</div>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/patients}">Patients</a>
+            <a th:href="@{/staff}">Staff</a>
+            <a th:href="@{/forecast}">Forecast</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Upcoming Patient Forecast</h1>
+
+        <!-- Moved the chart card before the data table card -->
+        <div class="card">
+            <h2>Forecast Chart</h2>
+            <div class="chart-container">
+                <canvas id="forecastChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Forecast Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Expected Patients</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="entry : ${forecast}">
+                        <td th:text="${entry.day}">2024-12-14</td>
+                        <td th:text="${entry.expected_patients}">15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        var forecastData = /*[[${forecast}]]*/ [];
+
+        var labels = forecastData.map(function(e) { return e.day; });
+        var dataPoints = forecastData.map(function(e) { return e.expected_patients; });
+
+        var ctx = document.getElementById('forecastChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Expected Patients',
+                    data: dataPoints,
+                    borderColor: 'rgba(74,144,226,1)',
+                    backgroundColor: 'rgba(74,144,226,0.1)',
+                    fill: true,
+                    tension: 0.2,
+                    pointBackgroundColor: '#4A90E2',
+                    pointBorderColor: '#4A90E2'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Ensures the chart uses the container height
+                scales: {
+                    x: { 
+                        title: { display: true, text: 'Date' }
+                    },
+                    y: { 
+                        title: { display: true, text: 'Patients' },
+                        beginAtZero: true 
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

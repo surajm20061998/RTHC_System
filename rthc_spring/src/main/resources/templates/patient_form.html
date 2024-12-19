@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Edit Patient</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="header">
+    <div class="logo">Healthcare System</div>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/patients}">All Patients</a>
+        <a th:href="@{/staff}">Staff</a>
+        <a th:href="@{/forecast}">Forecast</a>
+    </nav>
+</div>
+<div class="container">
+    <h1 th:text="${patient.patientId != null} ? 'Edit Patient' : 'Create Patient'">Create Patient</h1>
+    <div class="card">
+        <!-- The form action logic remains the same, but fields differ -->
+        <form th:action="${patient.patientId != null} ? @{|/patients/update/${patient.patientId}|} : @{/patients}" th:object="${patient}" method="post">
+            <label>First Name:</label>
+            <input type="text" th:field="*{firstName}" required><br><br>
+            <label>Last Name:</label>
+            <input type="text" th:field="*{lastName}" required><br><br>
+            <label>SSN:</label>
+            <input type="text" th:field="*{ssn}" required><br><br>
+            <label>Date of Birth:</label>
+            <input type="date" th:field="*{dateOfBirth}" required><br><br>
+            <label>Gender:</label>
+            <input type="text" th:field="*{gender}" required><br><br>
+            <label>Blood Type:</label>
+            <input type="text" th:field="*{bloodType}" required><br><br>
+
+            <!-- No risk factor or risk level, no admissionDate or status on creation if not desired -->
+            <!-- On creation, you might handle admissionDate or status in the controller defaulting them -->
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

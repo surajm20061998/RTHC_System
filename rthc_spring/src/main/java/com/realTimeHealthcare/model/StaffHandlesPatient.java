@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Staff_Handles_Patient")
+@Table(name = "Staff_Handles_Patient", schema = "dbo")
+//@Table(name = "Staff_Handles_Patient")
 @IdClass(StaffHandlesPatientId.class)
 public class StaffHandlesPatient {
 
@@ -33,7 +34,11 @@ public class StaffHandlesPatient {
     @Column(name = "shift_schedule")
     private String shiftSchedule;
 
+    // Constructors
+    public StaffHandlesPatient() {}
+
     // Getters and Setters
+
     public Staff getStaff() {
         return staff;
     }
@@ -42,5 +47,43 @@ public class StaffHandlesPatient {
         this.staff = staff;
     }
 
-    // ... [Include other getters and setters]
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Date getAssignmentStartDate() {
+        return assignmentStartDate;
+    }
+
+    public void setAssignmentStartDate(Date assignmentStartDate) {
+        this.assignmentStartDate = assignmentStartDate;
+    }
+
+    public Date getAssignmentEndDate() {
+        return assignmentEndDate;
+    }
+
+    public void setAssignmentEndDate(Date assignmentEndDate) {
+        this.assignmentEndDate = assignmentEndDate;
+    }
+
+    public String getCareRole() {
+        return careRole;
+    }
+
+    public void setCareRole(String careRole) {
+        this.careRole = careRole;
+    }
+
+    public String getShiftSchedule() {
+        return shiftSchedule;
+    }
+
+    public void setShiftSchedule(String shiftSchedule) {
+        this.shiftSchedule = shiftSchedule;
+    }
 }

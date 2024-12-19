@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Healthcare System - Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Healthcare System</div>
+        <nav>
+            <a th:href="@{/patients}">Patients</a>
+            <a th:href="@{/staff}">Staff</a>
+            <a th:href="@{/forecast}">Forecast</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Welcome to the Healthcare System</h1>
+
+        <div class="card">
+            <h2>Patients Arriving Today: <span th:text="${numPatientsToday}">0</span></h2>
+            <table th:if="${numPatientsToday > 0}">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Admission Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${patientsArrivingToday}">
+                        <td th:text="${p.patientId}">1</td>
+                        <td th:text="${p.firstName + ' ' + p.lastName}">John Doe</td>
+                        <td th:text="${p.formattedAdmissionDate}">2024-12-20</td>
+                        <td th:text="${p.status}">Admitted</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p th:if="${numPatientsToday == 0}">No patients arriving today.</p>
+        </div>
+
+        <div class="card">
+            <h2>Staff Working Today: <span th:text="${numStaffToday}">0</span></h2>
+            <table th:if="${numStaffToday > 0}">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${staffWorkingToday}">
+                        <td th:text="${s.staffId}">1</td>
+                        <td th:text="${s.firstName + ' ' + s.lastName}">Jane Smith</td>
+                        <td th:text="${s.role}">Nurse</td>
+                        <td th:text="${s.department}">Emergency</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p th:if="${numStaffToday == 0}">No staff scheduled for today.</p>
+        </div>
+
+        <div class="card">
+            <h2>High Risk Patients: <span th:text="${numHighRiskPatients}">0</span></h2>
+            <table th:if="${numHighRiskPatients > 0}">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Risk Level</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${highRiskPatients}">
+                        <td th:text="${p.patientId}">1</td>
+                        <td th:text="${p.firstName + ' ' + p.lastName}">John Doe</td>
+                        <td th:text="${p.riskLevel}">High</td>
+                        <td th:text="${p.status}">Admitted</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p th:if="${numHighRiskPatients == 0}">No high risk patients at this time.</p>
+        </div>
+    </div>
+</body>
+</html>

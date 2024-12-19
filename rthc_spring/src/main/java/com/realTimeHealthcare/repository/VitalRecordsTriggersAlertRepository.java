@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VitalRecordsTriggersAlertRepository extends JpaRepository<VitalRecordsTriggersAlert, VitalRecordsTriggersAlertId> {
-    // Custom query methods can be added here
+    // Additional custom query methods can be added here as needed
 }

@@ -1,42 +1,28 @@
-// File: src/main/java/com/example/healthcare_system/service/VitalRecordsService.java
 package com.realTimeHealthcare.service;
 
-import com.realTimeHealthcare.model.VitalRecords;
+import com.realTimeHealthcare.model.VitalRecord;
 import com.realTimeHealthcare.repository.VitalRecordsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class VitalRecordsService {
 
-    @Autowired
-    private VitalRecordsRepository vitalRecordsRepository;
+    private final VitalRecordsRepository vitalRecordsRepository;
 
-    // Get all vital records
-    public List<VitalRecords> getAllVitalRecords() {
-        return vitalRecordsRepository.findAll();
+    public VitalRecordsService(VitalRecordsRepository vitalRecordsRepository) {
+        this.vitalRecordsRepository = vitalRecordsRepository;
     }
 
-    // Get vital record by ID
-    public VitalRecords getVitalRecordById(Integer id) {
-        return vitalRecordsRepository.findById(id).orElse(null);
-    }
-
-    // Add or update vital record
-    public VitalRecords saveVitalRecord(VitalRecords vitalRecord) {
-        return vitalRecordsRepository.save(vitalRecord);
-    }
-
-    // Delete vital record
-    public void deleteVitalRecord(Integer id) {
-        vitalRecordsRepository.deleteById(id);
-    }
-
-    // Custom methods
-    public List<VitalRecords> getVitalRecordsBetween(Date start, Date end) {
-        return vitalRecordsRepository.findByTimestampBetween(start, end);
+    /**
+     * Retrieve the latest vital records for all patients.
+     *
+     * @return List of latest VitalRecords for each patient.
+     */
+    @Transactional(readOnly = true)
+    public List<VitalRecord> getLatestVitalRecordsForAllPatients() {
+        return vitalRecordsRepository.findLatestVitalRecordsForAllPatients();
     }
 }

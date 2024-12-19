@@ -8,11 +8,8 @@ public class MonitorRecordsVitalsId implements Serializable {
     private Integer monitor;
     private Integer vitalRecord;
 
-    // Default constructor
-    public MonitorRecordsVitalsId() {
-    }
+    public MonitorRecordsVitalsId() {}
 
-    // Getters and Setters
     public Integer getMonitor() {
         return monitor;
     }
@@ -29,18 +26,17 @@ public class MonitorRecordsVitalsId implements Serializable {
         this.vitalRecord = vitalRecord;
     }
 
-    // hashCode and equals
     @Override
-    public int hashCode() {
-        return Objects.hash(monitor, vitalRecord);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MonitorRecordsVitalsId)) return false;
+        MonitorRecordsVitalsId that = (MonitorRecordsVitalsId) o;
+        return Objects.equals(monitor, that.monitor) &&
+                Objects.equals(vitalRecord, that.vitalRecord);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof MonitorRecordsVitalsId)) return false;
-        MonitorRecordsVitalsId that = (MonitorRecordsVitalsId) obj;
-        return Objects.equals(monitor, that.monitor) &&
-                Objects.equals(vitalRecord, that.vitalRecord);
+    public int hashCode() {
+        return Objects.hash(monitor, vitalRecord);
     }
 }

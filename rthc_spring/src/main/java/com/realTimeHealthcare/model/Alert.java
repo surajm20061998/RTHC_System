@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "Alert")
+@Table(name = "Alert", schema = "dbo")
+//@Table(name = "Alert")
 public class Alert {
 
     @Id
@@ -13,6 +14,7 @@ public class Alert {
     @Column(name = "alert_id")
     private Integer alertId;
 
+    @Column(name = "timestamp")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
@@ -36,7 +38,11 @@ public class Alert {
     @OneToMany(mappedBy = "alert")
     private Set<StaffTakesAction> actionsTaken;
 
+    // Constructors
+    public Alert() {}
+
     // Getters and Setters
+
     public Integer getAlertId() {
         return alertId;
     }
@@ -45,5 +51,67 @@ public class Alert {
         this.alertId = alertId;
     }
 
-    // ... [Include other getters and setters]
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getAlertType() {
+        return alertType;
+    }
+
+    public void setAlertType(String alertType) {
+        this.alertType = alertType;
+    }
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Set<VitalRecordsTriggersAlert> getVitalRecordsTriggered() {
+        return vitalRecordsTriggered;
+    }
+
+    public void setVitalRecordsTriggered(Set<VitalRecordsTriggersAlert> vitalRecordsTriggered) {
+        this.vitalRecordsTriggered = vitalRecordsTriggered;
+    }
+
+    public Set<AlertRequiresAction> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(Set<AlertRequiresAction> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
+
+    public Set<StaffTakesAction> getActionsTaken() {
+        return actionsTaken;
+    }
+
+    public void setActionsTaken(Set<StaffTakesAction> actionsTaken) {
+        this.actionsTaken = actionsTaken;
+    }
 }

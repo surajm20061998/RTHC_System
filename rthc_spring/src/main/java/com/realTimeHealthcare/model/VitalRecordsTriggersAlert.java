@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "VitalRecords_Triggers_Alert")
+@Table(name = "VitalRecords_Triggers_Alert", schema = "dbo")
+//@Table(name = "VitalRecords_Triggers_Alert")
 @IdClass(VitalRecordsTriggersAlertId.class)
 public class VitalRecordsTriggersAlert {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "record_id")
-    private VitalRecords vitalRecord;
+    private VitalRecord vitalRecord;
 
     @Id
     @ManyToOne
@@ -28,14 +29,48 @@ public class VitalRecordsTriggersAlert {
     @Temporal(TemporalType.TIMESTAMP)
     private Date triggerTimestamp;
 
+    // Constructors
+    public VitalRecordsTriggersAlert() {}
+
     // Getters and Setters
-    public VitalRecords getVitalRecord() {
+
+    public VitalRecord getVitalRecord() {
         return vitalRecord;
     }
 
-    public void setVitalRecord(VitalRecords vitalRecord) {
+    public void setVitalRecord(VitalRecord vitalRecord) {
         this.vitalRecord = vitalRecord;
     }
 
-    // ... [Include other getters and setters]
+    public Alert getAlert() {
+        return alert;
+    }
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
+    }
+
+    public Double getTriggerThresholdValue() {
+        return triggerThresholdValue;
+    }
+
+    public void setTriggerThresholdValue(Double triggerThresholdValue) {
+        this.triggerThresholdValue = triggerThresholdValue;
+    }
+
+    public String getTriggerCondition() {
+        return triggerCondition;
+    }
+
+    public void setTriggerCondition(String triggerCondition) {
+        this.triggerCondition = triggerCondition;
+    }
+
+    public Date getTriggerTimestamp() {
+        return triggerTimestamp;
+    }
+
+    public void setTriggerTimestamp(Date triggerTimestamp) {
+        this.triggerTimestamp = triggerTimestamp;
+    }
 }

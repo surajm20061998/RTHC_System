@@ -10,11 +10,8 @@ public class StaffTakesActionId implements Serializable {
     private Integer alert;
     private Date actionTimestamp;
 
-    // Default constructor
-    public StaffTakesActionId() {
-    }
+    public StaffTakesActionId() {}
 
-    // Getters and Setters
     public Integer getStaff() {
         return staff;
     }
@@ -39,19 +36,18 @@ public class StaffTakesActionId implements Serializable {
         this.actionTimestamp = actionTimestamp;
     }
 
-    // hashCode and equals
     @Override
-    public int hashCode() {
-        return Objects.hash(staff, alert, actionTimestamp);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof StaffTakesActionId)) return false;
-        StaffTakesActionId that = (StaffTakesActionId) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StaffTakesActionId)) return false;
+        StaffTakesActionId that = (StaffTakesActionId) o;
         return Objects.equals(staff, that.staff) &&
                 Objects.equals(alert, that.alert) &&
                 Objects.equals(actionTimestamp, that.actionTimestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(staff, alert, actionTimestamp);
     }
 }

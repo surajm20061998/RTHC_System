@@ -8,11 +8,8 @@ public class AlertRequiresActionId implements Serializable {
     private Integer alert;
     private String requiredActionType;
 
-    // Default constructor
-    public AlertRequiresActionId() {
-    }
+    public AlertRequiresActionId() {}
 
-    // Getters and Setters
     public Integer getAlert() {
         return alert;
     }
@@ -29,18 +26,17 @@ public class AlertRequiresActionId implements Serializable {
         this.requiredActionType = requiredActionType;
     }
 
-    // hashCode and equals
     @Override
-    public int hashCode() {
-        return Objects.hash(alert, requiredActionType);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AlertRequiresActionId)) return false;
+        AlertRequiresActionId that = (AlertRequiresActionId) o;
+        return Objects.equals(alert, that.alert) &&
+                Objects.equals(requiredActionType, that.requiredActionType);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof AlertRequiresActionId)) return false;
-        AlertRequiresActionId that = (AlertRequiresActionId) obj;
-        return Objects.equals(alert, that.alert) &&
-                Objects.equals(requiredActionType, that.requiredActionType);
+    public int hashCode() {
+        return Objects.hash(alert, requiredActionType);
     }
 }

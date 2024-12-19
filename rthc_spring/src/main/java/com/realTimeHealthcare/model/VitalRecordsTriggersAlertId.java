@@ -8,11 +8,8 @@ public class VitalRecordsTriggersAlertId implements Serializable {
     private Integer vitalRecord;
     private Integer alert;
 
-    // Default constructor
-    public VitalRecordsTriggersAlertId() {
-    }
+    public VitalRecordsTriggersAlertId() {}
 
-    // Getters and Setters
     public Integer getVitalRecord() {
         return vitalRecord;
     }
@@ -29,18 +26,17 @@ public class VitalRecordsTriggersAlertId implements Serializable {
         this.alert = alert;
     }
 
-    // hashCode and equals
     @Override
-    public int hashCode() {
-        return Objects.hash(vitalRecord, alert);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof VitalRecordsTriggersAlertId)) return false;
+        VitalRecordsTriggersAlertId that = (VitalRecordsTriggersAlertId) o;
+        return Objects.equals(vitalRecord, that.vitalRecord) &&
+                Objects.equals(alert, that.alert);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof VitalRecordsTriggersAlertId)) return false;
-        VitalRecordsTriggersAlertId that = (VitalRecordsTriggersAlertId) obj;
-        return Objects.equals(vitalRecord, that.vitalRecord) &&
-                Objects.equals(alert, that.alert);
+    public int hashCode() {
+        return Objects.hash(vitalRecord, alert);
     }
 }

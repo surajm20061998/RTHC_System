@@ -1,3 +1,4 @@
+// File: src/main/java/com/example/healthcare_system/repository/AlertRequiresActionRepository.java
 package com.realTimeHealthcare.repository;
 
 import com.realTimeHealthcare.model.AlertRequiresAction;
@@ -7,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlertRequiresActionRepository extends JpaRepository<AlertRequiresAction, AlertRequiresActionId> {
-    // Custom query methods can be added here
+    // Additional custom query methods can be added here as needed
 }

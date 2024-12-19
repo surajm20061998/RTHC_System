@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "DeviceType_Defines_Monitor")
+@Table(name = "DeviceType_Defines_Monitor", schema = "dbo")
+//@Table(name = "DeviceType_Defines_Monitor")
 @IdClass(DeviceTypeDefinesMonitorId.class)
 public class DeviceTypeDefinesMonitor {
 
@@ -26,7 +27,11 @@ public class DeviceTypeDefinesMonitor {
     @JoinColumn(name = "configured_by_staff_id")
     private Staff configuredByStaff;
 
+    // Constructors
+    public DeviceTypeDefinesMonitor() {}
+
     // Getters and Setters
+
     public DeviceType getDeviceType() {
         return deviceType;
     }
@@ -35,5 +40,27 @@ public class DeviceTypeDefinesMonitor {
         this.deviceType = deviceType;
     }
 
-    // ... [Include other getters and setters]
+    public PatientMonitor getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(PatientMonitor monitor) {
+        this.monitor = monitor;
+    }
+
+    public Date getDefinitionDate() {
+        return definitionDate;
+    }
+
+    public void setDefinitionDate(Date definitionDate) {
+        this.definitionDate = definitionDate;
+    }
+
+    public Staff getConfiguredByStaff() {
+        return configuredByStaff;
+    }
+
+    public void setConfiguredByStaff(Staff configuredByStaff) {
+        this.configuredByStaff = configuredByStaff;
+    }
 }

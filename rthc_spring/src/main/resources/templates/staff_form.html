@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Edit Staff</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="header">
+    <div class="logo">Healthcare System</div>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/staff}">All Staff</a>
+        <a th:href="@{/patients}">Patients</a>
+        <a th:href="@{/forecast}">Forecast</a>
+    </nav>
+</div>
+<div class="container">
+    <h1 th:text="${staff.staffId != null} ? 'Edit Staff' : 'Create Staff'">Create Staff</h1>
+    <div class="card">
+        <form th:action="${staff.staffId != null} ? @{|/staff/update/${staff.staffId}|} : @{/staff}" th:object="${staff}" method="post">
+            <label>First Name:</label>
+            <input type="text" th:field="*{firstName}" required><br><br>
+
+            <label>Last Name:</label>
+            <input type="text" th:field="*{lastName}" required><br><br>
+
+            <label>SSN:</label>
+            <input type="text" th:field="*{ssn}" required><br><br>
+
+            <label>Date of Birth:</label>
+            <input type="date" th:field="*{dateOfBirth}" required><br><br>
+
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" required><br><br>
+
+            <label>Role:</label>
+            <select th:field="*{role}" required>
+                <option value="">--Select Role--</option>
+                <option value="Registered Nurse">Registered Nurse</option>
+                <option value="Occupational Therapist">Occupational Therapist</option>
+                <option value="Surgeon">Surgeon</option>
+                <option value="Clerk">Clerk</option>
+                <option value="Human Resources">Human Resources</option>
+                <option value="Doctor">Doctor</option>
+            </select>
+            <br><br>
+
+            <label>Department:</label>
+            <select th:field="*{department}" required>
+                <option value="">--Select Department--</option>
+                <option value="General Surgery">General Surgery</option>
+                <option value="Emergency">Emergency</option>
+                <option value="ICU">ICU</option>
+                <option value="Operations">Operations</option>
+                <option value="Management">Management</option>
+                <option value="General">General</option>
+            </select>
+            <br><br>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

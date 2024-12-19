@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Staff Detail</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Healthcare System</div>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/staff}">Staff</a>
+            <a th:href="@{/patients}">Patients</a>
+            <a th:href="@{/forecast}">Forecast</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Staff Detail</h1>
+        <div class="card detail-section">
+            <h2 th:text="${staff.firstName} + ' ' + ${staff.lastName}">Jane Smith</h2>
+            <p><strong>ID:</strong> <span th:text="${staff.staffId}">1</span></p>
+            <p><strong>Role:</strong> <span th:text="${staff.role}">Nurse</span></p>
+            <p><strong>Department:</strong> <span th:text="${staff.department}">Emergency</span></p>
+        </div>
+
+        <div class="card">
+            <h3>Alerts Involved</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Alert ID</th>
+                        <th>Type</th>
+                        <th>Severity</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action Taken</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="alert : ${alerts}">
+                        <td th:text="${alert.alertId}">101</td>
+                        <td th:text="${alert.alertType}">High Heart Rate</td>
+                        <td th:text="${alert.severity}">Critical</td>
+                        <td th:text="${alert.description}">Heart rate exceeds normal range</td>
+                        <td th:text="${alert.status}">Active</td>
+                        <td th:text="${alert.actionsTaken}">Responded</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

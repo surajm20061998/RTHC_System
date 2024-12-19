@@ -1,0 +1,161 @@
+/* File: src/main/resources/static/css/styles.css */
+
+/* Apply a simple reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Typography and Color Variables */
+html {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #1C3D5A;
+    --background-color: #fff;
+    --text-color: #333;
+    --highlight-bg: #eaf4ff;
+}
+
+/* Layout */
+.header {
+    background: var(--secondary-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    justify-content: space-between;
+}
+
+.header .logo {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.header nav a:hover {
+    color: #dce6ef;
+}
+
+/* Main content wrapper */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Headings */
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+/* Cards */
+.card {
+    background: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    table-layout: fixed;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: #f7f9fb;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9fafc;
+}
+
+tbody tr:hover {
+    background-color: var(--highlight-bg);
+    cursor: pointer;
+}
+
+/* High-Risk Highlight */
+.high-risk {
+    background-color: #ffe5e5 !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+}
+
+/* Patient & Staff Details */
+.detail-section p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.detail-section strong {
+    color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header nav a {
+        margin-left: 1rem;
+    }
+
+    table, th, td {
+        font-size: 0.85rem;
+    }
+
+    .detail-section p {
+        font-size: 0.9rem;
+    }
+}

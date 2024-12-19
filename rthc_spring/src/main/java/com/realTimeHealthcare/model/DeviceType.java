@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "DeviceType")
+@Table(name = "DeviceType", schema = "dbo")
+//@Table(name = "DeviceType")
 public class DeviceType {
 
     @Id
@@ -29,7 +30,11 @@ public class DeviceType {
     @OneToMany(mappedBy = "deviceType")
     private Set<DeviceTypeDefinesMonitor> deviceTypeDefinesMonitors;
 
+    // Constructors
+    public DeviceType() {}
+
     // Getters and Setters
+
     public Integer getDeviceTypeId() {
         return deviceTypeId;
     }
@@ -42,6 +47,48 @@ public class DeviceType {
         return name;
     }
 
-    // ... [Include other getters and setters]
-}
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getModelSeries() {
+        return modelSeries;
+    }
+
+    public void setModelSeries(String modelSeries) {
+        this.modelSeries = modelSeries;
+    }
+
+    public String getMonitoringCapabilities() {
+        return monitoringCapabilities;
+    }
+
+    public void setMonitoringCapabilities(String monitoringCapabilities) {
+        this.monitoringCapabilities = monitoringCapabilities;
+    }
+
+    public Set<DeviceTypeDefinesMonitor> getDeviceTypeDefinesMonitors() {
+        return deviceTypeDefinesMonitors;
+    }
+
+    public void setDeviceTypeDefinesMonitors(Set<DeviceTypeDefinesMonitor> deviceTypeDefinesMonitors) {
+        this.deviceTypeDefinesMonitors = deviceTypeDefinesMonitors;
+    }
+}

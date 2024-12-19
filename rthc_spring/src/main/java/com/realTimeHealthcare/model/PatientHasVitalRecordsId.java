@@ -1,47 +1,63 @@
-// File: src/main/java/com/example/healthcare_system/model/PatientHasVitalRecordsId.java
 package com.realTimeHealthcare.model;
 
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class PatientHasVitalRecordsId implements Serializable {
 
-    private Integer patient;
-    private Integer vitalRecord;
+    private static final long serialVersionUID = 1L;
 
-    // Default constructor
-    public PatientHasVitalRecordsId() {
+    @Column(name = "patient_id")
+    private Integer patientId;
+
+    @Column(name = "vital_record_id")
+    private Integer vitalRecordId;
+
+    // Constructors
+    public PatientHasVitalRecordsId() {}
+
+    public PatientHasVitalRecordsId(Integer patientId, Integer vitalRecordId) {
+        this.patientId = patientId;
+        this.vitalRecordId = vitalRecordId;
     }
 
     // Getters and Setters
-    public Integer getPatient() {
-        return patient;
+
+    public Integer getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Integer patient) {
-        this.patient = patient;
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 
-    public Integer getVitalRecord() {
-        return vitalRecord;
+    public Integer getVitalRecordId() {
+        return vitalRecordId;
     }
 
-    public void setVitalRecord(Integer vitalRecord) {
-        this.vitalRecord = vitalRecord;
+    public void setVitalRecordId(Integer vitalRecordId) {
+        this.vitalRecordId = vitalRecordId;
     }
 
-    // hashCode and equals
+    // Override equals and hashCode
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PatientHasVitalRecordsId that = (PatientHasVitalRecordsId) o;
+
+        if (!Objects.equals(patientId, that.patientId)) return false;
+        return Objects.equals(vitalRecordId, that.vitalRecordId);
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(patient, vitalRecord);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof PatientHasVitalRecordsId)) return false;
-        PatientHasVitalRecordsId that = (PatientHasVitalRecordsId) obj;
-        return Objects.equals(patient, that.patient) &&
-                Objects.equals(vitalRecord, that.vitalRecord);
+        int result = patientId != null ? patientId.hashCode() : 0;
+        result = 31 * result + (vitalRecordId != null ? vitalRecordId.hashCode() : 0);
+        return result;
     }
 }

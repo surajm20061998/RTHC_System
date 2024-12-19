@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Detail</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Healthcare System</div>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/patients}">All Patients</a>
+            <a th:href="@{/staff}">Staff</a>
+            <a th:href="@{/forecast}">Forecast</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Patient Detail</h1>
+        <div class="card detail-section">
+            <h2 th:text="${patient.firstName} + ' ' + ${patient.lastName}">John Doe</h2>
+            <p><strong>ID:</strong> <span th:text="${patient.patientId}">1</span></p>
+            <p><strong>Status:</strong> <span th:text="${patient.status}">Active</span></p>
+            <p><strong>High Risk:</strong> <span th:text="${patient.riskLevel == 'High' ? 'Yes' : 'No'}">No</span></p>
+            <p><strong>Risk Level:</strong> <span th:text="${patient.riskLevel}">Low</span></p>
+            <p><strong>Risk Factor:</strong> <span th:text="${patient.riskFactor}">0.3</span></p>
+        </div>
+
+        <!-- New card for Assessment Data -->
+        <div class="card detail-section" th:if="${assessment != null}">
+            <h3>Patient Assessment Details</h3>
+            <p><strong>Fried:</strong> <span th:text="${assessment.fried}">Frail</span></p>
+            <p><strong>Age:</strong> <span th:text="${assessment.age}">25</span></p>
+            <p><strong>Hospitalization (1 year):</strong> <span th:text="${assessment.hospitalizationOneYear}">0</span></p>
+            <p><strong>Hospitalization (3 years):</strong> <span th:text="${assessment.hospitalizationThreeYears}">0</span></p>
+            <p><strong>Ortho Hypotension:</strong> <span th:text="${assessment.orthoHypotension}">No</span></p>
+            <p><strong>Vision:</strong> <span th:text="${assessment.vision}">Sees moderately</span></p>
+            <p><strong>Audition:</strong> <span th:text="${assessment.audition}">Hears moderately</span></p>
+            <p><strong>Weight Loss:</strong> <span th:text="${assessment.weightLoss}">No</span></p>
+            <p><strong>Exhaustion Score:</strong> <span th:text="${assessment.exhaustionScore}">5.67</span></p>
+            <p><strong>Raise Chair Time:</strong> <span th:text="${assessment.raiseChairTime}">12.74</span></p>
+            <p><strong>Balance Single:</strong> <span th:text="${assessment.balanceSingle}">>5 sec</span></p>
+            <p><strong>Gait Get Up:</strong> <span th:text="${assessment.gaitGetUp}">9.00</span></p>
+            <p><strong>Gait Speed 4m:</strong> <span th:text="${assessment.gaitSpeed4m}">8.53</span></p>
+            <p><strong>Gait Speed Slower:</strong> <span th:text="${assessment.gaitSpeedSlower}">FALSE</span></p>
+            <p><strong>Grip Strength Abnormal:</strong> <span th:text="${assessment.gripStrengthAbnormal}">Yes</span></p>
+            <p><strong>Low Physical Activity:</strong> <span th:text="${assessment.lowPhysicalActivity}">No</span></p>
+        </div>
+
+        <div class="card">
+            <h3>Vital Records</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Heart Rate</th>
+                        <th>Blood Pressure</th>
+                        <th>Temperature</th>
+                        <th>Respiratory Rate</th>
+                        <th>Oxygen Saturation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="phvr : ${patient.patientHasVitalRecords}">
+                        <td th:text="${#dates.format(phvr.vitalRecord.timestamp, 'yyyy-MM-dd HH:mm')}">2023-01-01 10:00</td>
+                        <td th:text="${phvr.vitalRecord.heartRate}">80</td>
+                        <td th:text="${phvr.vitalRecord.bloodPressureSystolic} + '/' + ${phvr.vitalRecord.bloodPressureDiastolic}">120/80</td>
+                        <td th:text="${phvr.vitalRecord.temperature}">36.6</td>
+                        <td th:text="${phvr.vitalRecord.respiratoryRate}">16</td>
+                        <td th:text="${phvr.vitalRecord.oxygenSaturation}">98</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

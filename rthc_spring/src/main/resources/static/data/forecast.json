@@ -1,0 +1,30 @@
+[
+    {
+        "day": "2024-12-19",
+        "expected_patients": 2673
+    },
+    {
+        "day": "2024-12-20",
+        "expected_patients": 2405
+    },
+    {
+        "day": "2024-12-21",
+        "expected_patients": 1505
+    },
+    {
+        "day": "2024-12-22",
+        "expected_patients": 1301
+    },
+    {
+        "day": "2024-12-23",
+        "expected_patients": 3491
+    },
+    {
+        "day": "2024-12-24",
+        "expected_patients": 2798
+    },
+    {
+        "day": "2024-12-25",
+        "expected_patients": 2085
+    }
+]

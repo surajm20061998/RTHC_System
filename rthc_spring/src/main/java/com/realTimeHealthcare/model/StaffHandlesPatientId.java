@@ -10,11 +10,8 @@ public class StaffHandlesPatientId implements Serializable {
     private Integer patient;
     private Date assignmentStartDate;
 
-    // Default constructor
-    public StaffHandlesPatientId() {
-    }
+    public StaffHandlesPatientId() {}
 
-    // Getters and Setters
     public Integer getStaff() {
         return staff;
     }
@@ -39,19 +36,18 @@ public class StaffHandlesPatientId implements Serializable {
         this.assignmentStartDate = assignmentStartDate;
     }
 
-    // hashCode and equals
     @Override
-    public int hashCode() {
-        return Objects.hash(staff, patient, assignmentStartDate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof StaffHandlesPatientId)) return false;
-        StaffHandlesPatientId that = (StaffHandlesPatientId) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StaffHandlesPatientId)) return false;
+        StaffHandlesPatientId that = (StaffHandlesPatientId) o;
         return Objects.equals(staff, that.staff) &&
                 Objects.equals(patient, that.patient) &&
                 Objects.equals(assignmentStartDate, that.assignmentStartDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(staff, patient, assignmentStartDate);
     }
 }

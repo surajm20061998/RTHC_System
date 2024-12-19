@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Patients</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Healthcare System</div>
+        <nav>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/staff}">Staff</a>
+            <a th:href="@{/forecast}">Forecast</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>All Patients</h1>
+        <div class="card">
+            <a th:href="@{/patients/new}" style="margin-bottom: 1rem; display:inline-block;">Add New Patient</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Risk Level</th>
+                        <th>High Risk</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="patientDTO : ${patients}" th:classappend="${patientDTO.highRisk} ? 'high-risk'">
+                        <td th:text="${patientDTO.patient.patientId}">1</td>
+                        <td th:text="${patientDTO.patient.firstName + ' ' + patientDTO.patient.lastName}">John Doe</td>
+                        <td th:text="${patientDTO.patient.status}">Admitted</td>
+                        <td th:text="${patientDTO.patient.riskLevel}">High</td>
+                        <td th:text="${patientDTO.patient.riskLevel == 'High' ? 'Yes' : 'No'}">No</td>
+                        <td>
+                            <a th:href="@{|/patients/edit/${patientDTO.patient.patientId}|}">Edit</a> |
+                            <a th:href="@{|/patients/delete/${patientDTO.patient.patientId}|}">Delete</a> |
+                            <a th:href="@{|/patients/${patientDTO.patient.patientId}|}">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

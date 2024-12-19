@@ -10,11 +10,8 @@ public class PatientMonitorAssignmentId implements Serializable {
     private Integer monitor;
     private Date assignmentDate;
 
-    // Default constructor
-    public PatientMonitorAssignmentId() {
-    }
+    public PatientMonitorAssignmentId() {}
 
-    // Getters and Setters
     public Integer getPatient() {
         return patient;
     }
@@ -39,19 +36,18 @@ public class PatientMonitorAssignmentId implements Serializable {
         this.assignmentDate = assignmentDate;
     }
 
-    // hashCode and equals
     @Override
-    public int hashCode() {
-        return Objects.hash(patient, monitor, assignmentDate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof PatientMonitorAssignmentId)) return false;
-        PatientMonitorAssignmentId that = (PatientMonitorAssignmentId) obj;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PatientMonitorAssignmentId)) return false;
+        PatientMonitorAssignmentId that = (PatientMonitorAssignmentId) o;
         return Objects.equals(patient, that.patient) &&
                 Objects.equals(monitor, that.monitor) &&
                 Objects.equals(assignmentDate, that.assignmentDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(patient, monitor, assignmentDate);
     }
 }
