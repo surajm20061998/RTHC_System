@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.List;
@@ -198,6 +199,10 @@ public class WebController {
     public String getForecast(Model model) {
         try {
             // Run the Python script to generate/refresh forecast.json
+                String currentDirectory = System.getProperty("user.dir");
+                System.out.println("Current working directory: " + currentDirectory);
+                String currentDirectoryPath = Paths.get("").toAbsolutePath().toString();
+                System.out.println("Current working directory using Paths: " + currentDirectoryPath);
             forecastService.runForecastScript();
 
             // Now read the newly updated forecast.json

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 
 /**
  * Service to run forecast.py and provide path to forecast.json
@@ -14,10 +15,13 @@ import java.io.InputStreamReader;
 public class ForecastService {
 
     // Path to Python and script
-    // If 'python3' is not on PATH, you may need the full path to Python interpreter.
-    private static final String PYTHON_COMMAND = "python3"; 
-    private static final String SCRIPT_PATH = "/Users/surajmishra/workspace/tmpWrkspace/rthc_spring/src/main/scripts/forecast.py";
-    private static final String FORECAST_JSON_PATH = "/Users/surajmishra/workspace/tmpWrkspace/rthc_spring/src/main/resources/static/data/forecast.json";
+    // If 'python3' is not on PATH, you may need the full path to Python interpreter
+
+    String currentDirectory = System.getProperty("user.dir");
+    
+    String PYTHON_COMMAND = "python3"; 
+    String SCRIPT_PATH =  currentDirectory + "/src/main/scripts/forecast.py";
+    String FORECAST_JSON_PATH = currentDirectory + "/src/main/resources/static/data/forecast.json";
 
     /**
      * Runs the Python forecast script and waits for it to complete.
